@@ -11,11 +11,16 @@ lengthOfString('one world') // => 9
  * @returns length of the string
  */
 
-function lengthOfString(str: string): number {
-  let i = 0;
-  for (let char of str) i++;
+const segmenter = new Intl.Segmenter(undefined, {
+  granularity: "grapheme",
+});
 
-  return i;
+function lengthOfString(str: string): number {
+  let res = [...segmenter.segment(str)];
+  let count = 0;
+  for (let i of res) count++;
+
+  return count;
 }
 
 assert(lengthOfString("An 😀") === 4, `For input :"An 😀" you should get 4`);
@@ -30,4 +35,9 @@ assert(
 assert(
   lengthOfString("Codecraft") === 9,
   `For the input "Codecraft" result should be 9`,
+);
+
+assert(
+  lengthOfString("👩🏽‍🔬🏴󠁧󠁢󠁳󠁣󠁴󠁿Hi") === 4,
+  "the user perceived length is 4 for 👩🏽‍🔬🏴󠁧󠁢󠁳󠁣󠁴󠁿Hi",
 );
