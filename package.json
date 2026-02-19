@@ -1,0 +1,24 @@
+{
+  "name": "cc7-chethan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chethankumar-codecraft/cc7-Chethan.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chethankumar-codecraft/cc7-Chethan/issues"
+  },
+  "homepage": "https://github.com/chethankumar-codecraft/cc7-Chethan#readme",
+  "devDependencies": {
+    "@types/node": "^25.3.0"
+  },
+  "type": "module"
+}
