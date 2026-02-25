@@ -13,8 +13,7 @@ Here to evaluate expression i will first convert infix to postfix then evaluate 
  */
 
 export function evaluateExpression(expression: string): number | undefined {
-    if(expression.trim()==="")  //for empty string
-        return undefined;
+  if (expression.trim() === "") throw new Error("Expression cannot be empty");
 
   let postfix = convertToPostfix(expression);
   if (postfix === undefined) return undefined;
@@ -26,13 +25,21 @@ export function evaluateExpression(expression: string): number | undefined {
       let op1 = stack.pop();
       let op2 = stack.pop();
       if (op1 === null || op2 === null) return undefined;
-      stack.push(arithmetic(op2, op1, char));
+      stack.push(performOperation(op2, op1, char as Operator));
     } else stack.push(Number(char));
   }
-  return stack.top() ?? undefined;
+  if (stack.size() !== 1) return undefined;
+
+  return stack.top()!;
 }
 
-function arithmetic(num1: number, num2: number, operator: string): number {
+type Operator = "-" | "*" | "+" | "/" | "%";
+
+function performOperation(
+  num1: number,
+  num2: number,
+  operator: Operator,
+): number {
   switch (operator) {
     case "+":
       return num1 + num2;
@@ -40,14 +47,21 @@ function arithmetic(num1: number, num2: number, operator: string): number {
       return num1 - num2;
     case "*":
       return num1 * num2;
-    case "/":
+    case "/": {
+      if (num2 === 0) throw new Error("Division by zero");
       return num1 / num2;
+    }
+    case "%": {
+      if (num2 === 0) throw new Error("Division by zero");
+      return num1 % num2;
+    }
+
     default:
-      return 0;
+      throw new Error("illegal operands");
   }
 }
 
-function precedence(val: string) {
+function precedence(val: Operator) {
   if (val === "-" || val === "+") return 1;
   else if (val === "*" || val === "/") return 2;
   return 0;
@@ -59,19 +73,19 @@ function convertToPostfix(infix: string): string | undefined {
 
   for (let val of infix.split(" ")) {
     if (!Number.isNaN(Number(val)))
-      //return undefined if not a number
+      //only execute if the val is number
       res += val + " ";
     else if (val === "(") operatorStack.push(val);
     else if (val === ")") {
-      while (operatorStack.top()!==null && operatorStack.top() !== "(")
-         res += operatorStack.pop() + " ";
-      if(operatorStack.top()===null)
-        return undefined;
+      while (operatorStack.top() !== null && operatorStack.top() !== "(")
+        res += operatorStack.pop() + " ";
+      if (operatorStack.top() === null) throw new Error("Invalid parenthesis");
       operatorStack.pop();
     } else if ("*-/+".includes(val)) {
       while (
         operatorStack.top() !== null &&
-        precedence(operatorStack.top()!) >= precedence(val)
+        precedence(operatorStack.top() as Operator) >=
+          precedence(val as Operator)
       ) {
         res += operatorStack.pop() + " ";
       }
@@ -79,8 +93,7 @@ function convertToPostfix(infix: string): string | undefined {
     } else return undefined;
   }
   while (operatorStack.top() !== null) {
-    if(operatorStack.top()==='(')       //expression as invalid paranthesis
-        return undefined;
+    if (operatorStack.top() === "(") throw new Error("Invalid parenthesis"); //expression has invalid paranthesis
     res += operatorStack.pop() + " ";
   }
   return res;
