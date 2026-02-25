@@ -19,6 +19,7 @@ export class Stack<T> {
   }
 
   pop(): T | null {
+    if (this.sizeOfStack === 0) return null;
     this.sizeOfStack--;
     return this.items.removeFromHead();
   }
