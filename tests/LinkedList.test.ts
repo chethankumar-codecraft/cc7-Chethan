@@ -22,18 +22,25 @@ describe("LinkedList", () => {
   });
   it("Removing element from end", () => {
     const list = new LinkedList<number>();
-
+    expect(list.removeFromEnd()).toBe(null);
     list.addAtHead(100);
-    list.addAtHead(200);
-
     expect(list.removeFromEnd()).toBe(100);
-    expect(list.length()).toBe(1);
+    list.addAtHead(200);
+    list.addAtEnd(5);
+
+    expect(list.removeFromEnd()).toBe(5);
+    list.addAtHead(200);
+    list.addAtEnd(5);
+    list.addAtHead(44);
+    expect(list.length()).toBe(4);
   });
   it("Removing element from head", () => {
     const list = new LinkedList<number>();
-
+    expect(list.removeFromHead()).toBe(null);
     list.addAtHead(100);
+    expect(list.removeFromHead()).toBe(100);
     list.addAtHead(200);
+    list.addAtEnd(100);
 
     expect(list.length()).toBe(2);
     expect(list.removeFromHead()).toBe(200);
@@ -42,7 +49,9 @@ describe("LinkedList", () => {
   it("Length of the List", () => {
     const list = new LinkedList<number>();
 
+    expect(list.length()).toBe(0);
     list.addAtHead(100);
+    expect(list.length()).toBe(1);
     list.addAtHead(200);
 
     expect(list.length()).toBe(2);
@@ -51,7 +60,7 @@ describe("LinkedList", () => {
   });
   it("Seraching in List", () => {
     const list = new LinkedList<string>();
-
+    expect(list.searchFor("Chethan")).toBe(false);
     list.addAtHead("Chethan");
     list.addAtHead("Codecraft");
 

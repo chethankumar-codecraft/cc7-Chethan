@@ -24,8 +24,18 @@ describe("evaluateExpression", () => {
     expect(evaluateExpression("2 + 3 6")).toBe(undefined);
   });
 
+  it("should return undefined for invalid expression", () => {
+    expect(evaluateExpression("2 + 5 -")).toBe(undefined);
+  });
+
   it("should handle divide by zero", () => {
     expect(() => evaluateExpression("5 / 0")).toThrow("Division by zero");
+  });
+  it("should handle divide by zero", () => {
+    expect(() => evaluateExpression("5 % 0")).toThrow("Division by zero");
+  });
+  it("should handle modular", () => {
+    expect(evaluateExpression("5 % 5")).toBe(0);
   });
 
   it("should throw error for empty input", () => {

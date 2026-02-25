@@ -21,7 +21,7 @@ export function evaluateExpression(expression: string): number | undefined {
   const stack = new Stack<number>();
 
   for (let char of postfix.trim().split(" ")) {
-    if ("*/+-".includes(char)) {
+    if ("*/+-%".includes(char)) {
       let op1 = stack.pop();
       let op2 = stack.pop();
       if (op1 === null || op2 === null) return undefined;
@@ -55,9 +55,6 @@ function performOperation(
       if (num2 === 0) throw new Error("Division by zero");
       return num1 % num2;
     }
-
-    default:
-      throw new Error("illegal operands");
   }
 }
 
@@ -81,7 +78,7 @@ function convertToPostfix(infix: string): string | undefined {
         res += operatorStack.pop() + " ";
       if (operatorStack.top() === null) throw new Error("Invalid parenthesis");
       operatorStack.pop();
-    } else if ("*-/+".includes(val)) {
+    } else if ("*-/+%".includes(val)) {
       while (
         operatorStack.top() !== null &&
         precedence(operatorStack.top() as Operator) >=

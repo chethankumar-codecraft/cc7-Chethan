@@ -38,10 +38,6 @@ export class LinkedList<T> {
     if (this.head === null) return null;
     else return this.head.data;
   }
-  get tailValue(): null | T {
-    if (this.tail === null) return null;
-    else return this.tail.data;
-  }
 
   addAtEnd(t: T): T {
     const newNode = new ListNode(t);
