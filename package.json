@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+"scripts": {
+  "test": "vitest",
+  "test:run": "vitest run"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chethankumar-codecraft/cc7-Chethan.git"
@@ -18,7 +19,8 @@
   },
   "homepage": "https://github.com/chethankumar-codecraft/cc7-Chethan#readme",
   "devDependencies": {
-    "@types/node": "^25.3.0"
+    "@types/node": "^25.3.0",
+    "vitest": "^4.0.18"
   },
   "type": "module"
 }
