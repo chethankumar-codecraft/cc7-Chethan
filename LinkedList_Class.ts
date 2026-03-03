@@ -104,11 +104,22 @@ export class LinkedList<T> {
     return deleted.data;
   }
 
-  searchFor(t: T): boolean {
+  // searchFor(t: T): boolean {
+  //   if (this.head === null) return false;
+  //   let cur = this.head;
+  //   while (cur !== null) {
+  //     if (t === cur.data) return true;
+  //     cur = cur.next!;
+  //   }
+
+  //   return false;
+  // }
+
+  searchFor(t: T, compare: (target: T, val: T) => boolean): boolean {
     if (this.head === null) return false;
     let cur = this.head;
     while (cur !== null) {
-      if (t === cur.data) return true;
+      if (compare(cur.data, t)) return true;
       cur = cur.next!;
     }
 

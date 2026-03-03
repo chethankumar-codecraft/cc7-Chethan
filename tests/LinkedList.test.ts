@@ -60,11 +60,22 @@ describe("LinkedList", () => {
   });
   it("Seraching in List", () => {
     const list = new LinkedList<string>();
-    expect(list.searchFor("Chethan")).toBe(false);
+    expect(list.searchFor("Chethan", (a, b) => a === b)).toBe(false);
     list.addAtHead("Chethan");
     list.addAtHead("Codecraft");
+    expect(list.searchFor("Chethan", (a, b) => a === b)).toBe(true);
+    expect(list.searchFor("Chethan", (a, b) => a === b)).toBe(true);
+    expect(list.searchFor("Hello", (a, b) => a === b)).toBe(false);
 
-    expect(list.searchFor("Chethan")).toBe(true);
-    expect(list.searchFor("Hello")).toBe(false);
+    const list1 = new LinkedList<{ a: number; b: number }>();
+    list1.addAtHead({ a: 2, b: 2 });
+    list1.addAtHead({ a: 1, b: 2 });
+
+    expect(
+      list1.searchFor({ a: 2, b: 2 }, (x, y) => x.a === y.a && x.b === y.b),
+    ).toBe(true);
+    expect(
+      list1.searchFor({ a: 5, b: 2 }, (x, y) => x.a === y.a && x.b === y.b),
+    ).toBe(false);
   });
 });
