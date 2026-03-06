@@ -7,7 +7,7 @@ Generate an array that contains first n natural numbers.  Then get us an object,
  */
 
 function naturalNumbers(n: number) {
-  let res = [];
+  const res = [];
   for (let i = 1; i <= n; i++) res.push(i);
   return res;
 }
@@ -44,7 +44,7 @@ Generate an array containing alphabets. Then produce an object that contain two 
  */
 
 function alphabetArray() {
-  let array = [];
+  const array = [];
   for (let i = "A".charCodeAt(0); i <= "Z".charCodeAt(0); i++)
     array.push(String.fromCharCode(i));
 
@@ -240,6 +240,24 @@ const movies2 = [
   },
 ];
 //1.Get the array of all actor names  (cast) that are seen in the movies data.
+const allActors1 = movies.reduce((acc: string[], cur) => {
+  cur.cast.forEach((actor) => {
+    if (!acc.includes(actor)) acc.push(actor);
+  });
+  return acc;
+}, []);
+assert.deepStrictEqual(allActors1.splice(10), [
+  "Jason Sudeikis",
+  "Jessica Biel",
+  "Maisie Williams",
+  "Mary Steenburgen",
+  "Orlando Jones",
+  "Paul Reiser",
+  "James McAvoy",
+  "Anya Taylor-Joy",
+  "Betty Buckley",
+  "Jessica Sula",
+]);
 const allActors = movies2.reduce((acc: string[], cur) => {
   cur.cast.forEach((actor) => {
     if (!acc.includes(actor)) acc.push(actor);
@@ -335,7 +353,7 @@ Use compose or pipe mechanism to come up with a function  trim,  that composes t
  */
 
 type Func = (str: string) => string;
-const pipe = <T>(...funcs: Func[]): Func => {
+const pipe = (...funcs: Func[]): Func => {
   return (x: string) => {
     return funcs.reduce((acc, cur) => cur(acc), x);
   };
@@ -392,6 +410,14 @@ const filter = <T>(array: T[], predicate: (item: T) => boolean): T[] => {
   }, []);
 };
 
-assert.deepStrictEqual(filter([1,2,3,4,5,6,7,8,9,10],(num:number)=>num%2==0),[2,4,6,8,10]);
+assert.deepStrictEqual(
+  filter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (num: number) => num % 2 == 0),
+  [2, 4, 6, 8, 10],
+);
 
-assert.deepStrictEqual(filter(["CodeCraft","CodeProof","leetCode","CodeChef"],(str:string)=>str.startsWith("Code")),["CodeCraft","CodeProof","CodeChef"])
+assert.deepStrictEqual(
+  filter(["CodeCraft", "CodeProof", "leetCode", "CodeChef"], (str: string) =>
+    str.startsWith("Code"),
+  ),
+  ["CodeCraft", "CodeProof", "CodeChef"],
+);

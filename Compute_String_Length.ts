@@ -16,9 +16,10 @@ const segmenter = new Intl.Segmenter(undefined, {
 });
 
 function lengthOfString(str: string): number {
-  let res = [...segmenter.segment(str)];
+  const res = [...segmenter.segment(str)];
   let count = 0;
-  for (let i of res) count++;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  for (const val of res) count++;
 
   return count;
 }

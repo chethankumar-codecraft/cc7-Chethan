@@ -12,8 +12,8 @@ type OddEven = "even" | "odd";
 
 type Print = (n: number, odd_or_even: OddEven) => number[];
 
-let printNumbers: Print = (n, odd_or_even) => {
-  let res = [];
+const printNumbers: Print = (n, odd_or_even) => {
+  const res = [];
   for (let i = 1; i <= n * 2; i++) {
     if (odd_or_even == "even" && i % 2 == 0) res.push(i);
     else if (odd_or_even == "odd" && i % 2 == 1) res.push(i);

@@ -1,4 +1,4 @@
-import assert, { deepStrictEqual } from "assert";
+import assert from "assert";
 
 /**
  * 11. First N Perfect Squares
@@ -16,7 +16,7 @@ generateFirstSquares(4) // returns [1, 4, 9, 16]
  */
 
 function generateFirstSquares(n: number): number[] {
-  let res: number[] = [];
+  const res: number[] = [];
   if (n < 1) return res;
   for (let i = 1; i <= n; i++) res.push(i * i);
 

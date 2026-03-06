@@ -16,7 +16,7 @@ getDayOfWeek('xyz') // should return -1
  * @returns number represent week day
  */
 function getDayOfWeek(dayName: string): number {
-  let Day = dayName.toLowerCase();
+  const Day = dayName.toLowerCase();
 
   switch (Day) {
     case "sun":

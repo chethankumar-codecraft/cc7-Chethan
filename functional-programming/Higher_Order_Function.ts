@@ -110,7 +110,7 @@ let items = ['mangalore', 'semangin', '2 lonely', 'verify', 'rectify', 'mangala'
 
  */
 
-let items2 = [
+const items2 = [
   "mangalore",
   "semangin",
   "2 lonely",
@@ -120,7 +120,7 @@ let items2 = [
   "notifyy",
 ];
 
-let resultItems2 = items2.filter(
+const resultItems2 = items2.filter(
   (str) => str.startsWith("mang") || str.endsWith("fy"),
 );
 
@@ -133,7 +133,7 @@ assert.deepStrictEqual(resultItems2, [
 
 //using Regex based check
 const mangOrfyPattern = /^mang.*|.*fy$/;
-let resultItemRegex = items2.filter((str) => str.match(mangOrfyPattern));
+const resultItemRegex = items2.filter((str) => str.match(mangOrfyPattern));
 
 assert.deepStrictEqual(resultItemRegex, [
   "mangalore",
@@ -175,7 +175,7 @@ function fibonacci(num: number) {
   if (num == 1) return 1;
   let i = 2;
   while (i <= num) {
-    let fib3 = fib1 + fib2;
+    const fib3 = fib1 + fib2;
     fib1 = fib2;
     fib2 = fib3;
     i++;
