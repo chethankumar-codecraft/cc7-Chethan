@@ -15,15 +15,15 @@ Here to evaluate expression i will first convert infix to postfix then evaluate 
 export function evaluateExpression(expression: string): number | undefined {
   if (expression.trim() === "") throw new Error("Expression cannot be empty");
 
-  let postfix = convertToPostfix(expression);
+  const postfix = convertToPostfix(expression);
   if (postfix === undefined) return undefined;
 
   const stack = new Stack<number>();
 
-  for (let char of postfix.trim().split(" ")) {
+  for (const char of postfix.trim().split(" ")) {
     if ("*/+-%".includes(char)) {
-      let op1 = stack.pop();
-      let op2 = stack.pop();
+      const op1 = stack.pop();
+      const op2 = stack.pop();
       if (op1 === null || op2 === null) return undefined;
       stack.push(performOperation(op2, op1, char as Operator));
     } else stack.push(Number(char));
@@ -68,7 +68,7 @@ function convertToPostfix(infix: string): string | undefined {
   const operatorStack = new Stack<string>();
   let res = "";
 
-  for (let val of infix.split(" ")) {
+  for (const val of infix.split(" ")) {
     if (!Number.isNaN(Number(val)))
       //only execute if the val is number
       res += val + " ";

@@ -16,9 +16,9 @@ const segmenter = new Intl.Segmenter(undefined, {
 });
 
 function lengthOfString(str: string): number {
-  let res = [...segmenter.segment(str)];
+  const res = [...segmenter.segment(str)];
   let count = 0;
-  for (let i of res) count++;
+  for (let i = 0; i < res.length; i++) count++;
 
   return count;
 }

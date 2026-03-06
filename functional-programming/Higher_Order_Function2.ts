@@ -8,7 +8,7 @@ function some(items, predicate)
 
 //Impersive solution
 function some<T>(items: T[], predicate: (val: T) => boolean) {
-  for (let val of items) {
+  for (const val of items) {
     if (predicate(val)) return true;
   }
   return false;
@@ -609,7 +609,7 @@ const highestNutrientValues = fruitsAndNut.reduce(
   (acc: Record<string, [number, string]>, cur) => {
     // nutrients: [protien value and fruit/nut name]
     const nutritionsList = cur.nutritions as Record<string, number>; //converting key as string because during loop it takes key as string
-    for (let val in nutritionsList) {
+    for (const val in nutritionsList) {
       if (nutritionsList[val] !== undefined) {
         if (acc[val] === undefined)
           acc[val] = [nutritionsList[val], cur.name]; //adding to result
@@ -643,7 +643,7 @@ assert.deepStrictEqual(highestNutrient, {
 
 //2.Get an array of all unique nutritions that are present in all the fruits and nuts above
 const uniqueNutrients = fruitsAndNut.reduce<string[]>((acc, cur) => {
-  for (let val of Object.keys(cur.nutritions))
+  for (const val of Object.keys(cur.nutritions))
     if (!acc.includes(val)) acc.push(val);
   return acc;
 }, []);
@@ -657,7 +657,7 @@ assert.deepStrictEqual(uniqueNutrients, [
 //3.Get an array of all unique health conditions that the fruits treat.
 const uniqueHealthFruits = fruitsAndNut.reduce((acc: string[], cur) => {
   if (cur.type === "fruit")
-    for (let val of cur.treats) if (!acc.includes(val)) acc.push(val);
+    for (const val of cur.treats) if (!acc.includes(val)) acc.push(val);
   return acc;
 }, []);
 

@@ -75,8 +75,6 @@ class Circle extends Shape {
   }
 }
 
-const circle1 = new Circle(5);
-
 const arr: Shape[] = [
   new Circle(5),
   new Circle(10),

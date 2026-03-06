@@ -17,7 +17,7 @@ addArrays([4, 5, 5], []) // => [4, 5, 5]
  */
 
 function addArrays(arr1: number[], arr2: number[]): number[] {
-  let res: number[] = [];
+  const res: number[] = [];
 
   let i = 0,
     j = 0;

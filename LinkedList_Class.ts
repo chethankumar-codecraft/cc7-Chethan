@@ -59,7 +59,7 @@ export class LinkedList<T> {
 
     //incase of only one data
     if (this.head === this.tail) {
-      let deleted = this.head;
+      const deleted = this.head;
       this.head = null;
       this.tail = null;
       return deleted.data;
@@ -69,7 +69,7 @@ export class LinkedList<T> {
     while (cur.next !== this.tail) {
       cur = cur.next!;
     }
-    let deleted = cur.next!;
+    const deleted = cur.next!;
     cur.next = null;
     this.tail = cur;
     return deleted.data;
@@ -93,13 +93,13 @@ export class LinkedList<T> {
 
     //one element
     if (this.head === this.tail) {
-      let deleted = this.head;
+      const deleted = this.head;
       this.head = null;
       this.tail = null;
       return deleted.data;
     }
 
-    let deleted = this.head;
+    const deleted = this.head;
     this.head = this.head.next;
     return deleted.data;
   }

@@ -12,7 +12,7 @@ function getStringSpecial(str: string): string {
   let res = "";
   outLoop: for (let i = 0; i < str.length; i++) {
     if (str[i] !== " ")
-      inLoop: for (let j = i - 1; j >= 0; j--) {
+       for (let j = i - 1; j >= 0; j--) {
         if (str[i] === str[j]) break outLoop;
       }
     res += str[i];
