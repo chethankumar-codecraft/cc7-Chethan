@@ -246,7 +246,7 @@ const allActors1 = movies.reduce((acc: string[], cur) => {
   });
   return acc;
 }, []);
-assert.deepStrictEqual(allActors1.splice(10), [
+assert.deepStrictEqual(allActors1.splice(0, 10), [
   "Jason Sudeikis",
   "Jessica Biel",
   "Maisie Williams",

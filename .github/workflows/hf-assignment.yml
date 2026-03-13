@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
@@ -18,11 +18,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run assignment files
-        run:  node functional-programming/*.ts
+      - name: Run assignment files of functional programming
+        run: |
+          npx ts-node functional-programming/Higher_Order_function.ts
+          npx ts-node functional-programming/Higher_Order_function2.ts
+          npx ts-node functional-programming/Higher_Order_function_3.ts
 
       - name: Run linting
-        run: npm run lint   
+        run: npm run lint
 
       - name: Run tests
-        run: npm test   
+        run: npm test
