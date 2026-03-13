@@ -5,7 +5,7 @@ import fs from "node:fs";
  * @param path
  * @returns type of the file
  */
-function getFileType(path: string): Promise<"FILE" | "DIRECTORY" | "OTHER"> {
+export function getFileType(path: string): Promise<"FILE" | "DIRECTORY" | "OTHER"> {
   return new Promise((resolve, reject) => {
     fs.promises
       .stat(path)
@@ -29,7 +29,7 @@ getFileType("newfile.ts")
   .catch((error) => console.log(error.message));
 
 //function that gets you the file path of the file, or names of items of the  folder
-function getContents(path: string): Promise<string | string[]> {
+export function getContents(path: string): Promise<string | string[]> {
   return new Promise((resolve, reject) => {
     getFileType(path)
       .then((type) => {
@@ -63,7 +63,7 @@ getContents("wrongfile.ts")
   .catch((error) => console.log(error.message));
 
 // function that gets the size of the file or folder at given path
-function getSize(path: string): Promise<number> {
+export function getSize(path: string): Promise<number> {
   return new Promise((resolve, reject) => {
     fs.promises
       .stat(path)
