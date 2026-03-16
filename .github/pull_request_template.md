@@ -37,6 +37,7 @@ Brief explanation of what was implemented and the approach used.
 ## 🧠 Approach Used
 
 Short explanation of logic used:
+
 - Algorithms used
 - TypeScript concepts applied (generics / asserts / types etc.)
 
@@ -54,6 +55,7 @@ Short explanation of logic used:
 ## 📂 Files Added / Modified
 
 List the files changed:
+
 - `file1.ts`
 - `file2.ts`
 - `file3.ts`
@@ -66,3 +68,4 @@ List the files changed:
 npm install
 npx tsc
 node dist/<file-name>.js
+```

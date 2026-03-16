@@ -5,7 +5,9 @@ import fs from "node:fs";
  * @param path
  * @returns type of the file
  */
-export function getFileType(path: string): Promise<"FILE" | "DIRECTORY" | "OTHER"> {
+export function getFileType(
+  path: string,
+): Promise<"FILE" | "DIRECTORY" | "OTHER"> {
   return new Promise((resolve, reject) => {
     fs.promises
       .stat(path)

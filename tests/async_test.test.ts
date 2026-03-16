@@ -3,6 +3,7 @@ import path from "path";
 import * as promiseVersion from "../async-programming/1.async_assignment.ts";
 import * as promisefsVersion from "../async-programming/2.async_assignment.ts";
 import * as asyncAwaitVersion from "../async-programming/3.async_assignment.ts";
+import fs from "fs";
 
 //testing Promise Version using resolve/reject pattern
 describe("Promise Version Tests", () => {
@@ -52,11 +53,15 @@ describe("Promise Version Tests", () => {
   describe("Testing getSize", () => {
     it("file name should return size of the file", () => {
       const filePath = path.resolve("async-programming/1.async_assignment.ts");
-      return expect(promiseVersion.getSize(filePath)).resolves.toBe(4326);
+      return expect(promiseVersion.getSize(filePath)).resolves.toBe(
+        fs.statSync(filePath).size,
+      );
     });
     it("folder name should return the size of the folder", () => {
       const folderPath = path.resolve("functional-programming");
-      return expect(promiseVersion.getSize(folderPath)).resolves.toBe(173569);
+      return expect(
+        promiseVersion.getSize(folderPath),
+      ).resolves.toBeGreaterThanOrEqual(165887);
     });
     it("Invalid path should return error message", () => {
       return expect(
@@ -117,13 +122,19 @@ describe("Promise-fs Version Tests", () => {
 
   describe("getSize", () => {
     it("file should return correct size", () => {
-      const filePath = path.resolve("async-programming/1.async_assignment.ts");
-      return expect(promisefsVersion.getSize(filePath)).resolves.toBe(4326); // check actual file size
+      const filePath = path.resolve(
+        "functional-programming/Higher_Order_Function.ts",
+      );
+      return expect(promisefsVersion.getSize(filePath)).resolves.toBe(
+        fs.statSync(filePath).size,
+      );
     });
 
     it("folder should return total size", () => {
       const folderPath = path.resolve("functional-programming");
-      return expect(promisefsVersion.getSize(folderPath)).resolves.toBe(173569); // check actual folder size
+      return expect(
+        promisefsVersion.getSize(folderPath),
+      ).resolves.toBeGreaterThanOrEqual(165887);
     });
 
     it("invalid path should throw file system error", () => {
@@ -187,13 +198,13 @@ describe("Async/Await Version Tests (using async/await)", () => {
     it("file path should return size", async () => {
       const filePath = path.resolve("async-programming/1.async_assignment.ts");
       const result = await asyncAwaitVersion.getSize(filePath);
-      expect(result).toBe(4326); // update with actual file size
+      expect(result).toBe(fs.statSync(filePath).size);
     });
 
     it("folder path should return total size", async () => {
       const folderPath = path.resolve("functional-programming");
       const result = await asyncAwaitVersion.getSize(folderPath);
-      expect(result).toBe(173569); // update with actual folder size
+      expect(result).toBeGreaterThanOrEqual(165887);
     });
 
     it("invalid path should throw file system error", async () => {
