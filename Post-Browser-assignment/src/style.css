@@ -1,0 +1,100 @@
+body {
+  text-align: center;
+  background-color: #001f3f;
+  margin: 0;
+  padding: 0;
+}
+
+.API-container {
+  width: 80%;
+  max-width: 700px;
+  border: 2px solid rebeccapurple;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: antiquewhite;
+  border-radius: 20px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.post-card {
+  margin-bottom: 20px;
+}
+
+#post-id {
+  text-align: center;
+  width: 90px;
+  height: 20px;
+  padding: 3px 2px;
+  background-color: rgb(243, 190, 190);
+  border: 1px solid rgb(243, 190, 190);
+  border-radius: 15px;
+  display: inline-block;
+}
+
+.comments-section {
+  display: none;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.comments-section.show {
+  display: block;
+}
+
+h1 {
+  font-family: Impact, sans-serif;
+  font-weight: 100;
+  color: aqua;
+}
+
+.actions,
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+button {
+  width: 120px;
+  font-size: 18px;
+  font-weight: 200;
+  height: 40px;
+  font-family: Inter, sans-serif;
+  border-radius: 20px;
+  margin-bottom: 5px;
+}
+
+li::marker {
+  color: black;
+  font-size: 1.2em;
+  content: "» ";
+}
+
+#next {
+  background-color: aquamarine;
+}
+#comments {
+  background-color: white;
+}
+#refresh {
+  background-color: skyblue;
+}
+#previous {
+  background-color: chartreuse;
+}
+
+ul li {
+  margin: 5px 0 8px;
+  border: 1px solid rosybrown;
+  color: white;
+  border-radius: 10px;
+  background-color: rgb(40, 220, 20);
+  padding: 7px;
+}
+
+hr {
+  height: 2px;
+  border: 1px solid green;
+  background-color: green;
+}

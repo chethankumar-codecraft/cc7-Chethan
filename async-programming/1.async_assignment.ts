@@ -18,7 +18,9 @@ Test them using a console based approach by chaining them and catch methods on t
  */
 // Returns a promise that when resolved will get you the type of file
 // when error, it will come back with an Error with message "file system error"
-export function getFileType(path: string): Promise<"FILE" | "DIRECTORY" | "OTHER"> {
+export function getFileType(
+  path: string,
+): Promise<"FILE" | "DIRECTORY" | "OTHER"> {
   return new Promise((resolve, reject) => {
     fs.stat(path, (err: NodeJS.ErrnoException | null, stats: fs.Stats) => {
       if (err) reject(new Error("file system error"));
@@ -74,7 +76,7 @@ getContents("wrongfile.ts")
   .catch((error) => console.log(error.message));
 
 // function that gets the size of the file or folder at given path
- export function getSize(path: string): Promise<number> {
+export function getSize(path: string): Promise<number> {
   return new Promise((resolve, reject) => {
     fs.stat(path, (err: NodeJS.ErrnoException | null, stats: fs.Stats) => {
       getContents(path)

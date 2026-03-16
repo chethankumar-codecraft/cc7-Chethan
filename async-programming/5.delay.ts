@@ -7,6 +7,6 @@ Test this function using vitest. Check how to correctly test time based function
 
 export function delay(milliseconds: number): Promise<undefined> {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(undefined), milliseconds);
+    setTimeout(resolve, milliseconds);
   });
 }
