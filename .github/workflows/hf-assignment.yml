@@ -27,5 +27,15 @@ jobs:
       - name: Run linting
         run: npm run lint
 
-      - name: Run tests
-        run: npm test
+      # Testing project
+      - name: Install dependencies in project folder
+        working-directory: Post-Browser-assignment
+        run: npm install
+
+      - name: Install Playwright Browsers
+        working-directory: Post-Browser-assignment
+        run: npx playwright install --with-deps
+
+      - name: Run project tests
+        working-directory: Post-Browser-assignment
+        run: npx playwright test

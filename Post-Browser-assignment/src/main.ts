@@ -106,7 +106,8 @@ async function loadComment(): Promise<void> {
     }
     comments.forEach((comment) => {
       const newList = document.createElement("li");
-      newList.textContent = `${comment.name}:${comment.body}`;
+      newList.innerHTML = `<div class="comment-email">${comment.email}</div>
+      <div class="comment-message">${comment.name}: ${comment.body}`;
       commentsList?.appendChild(newList);
     });
     status!.textContent = "";
@@ -115,18 +116,33 @@ async function loadComment(): Promise<void> {
     console.error(err);
   }
 }
-previousButton!.addEventListener("click", () => {
-  if (currentId > 0) loadPost(currentId - 1);
-});
-nextButton!.addEventListener("click", () => {
-  loadPost(currentId + 1);
-});
+
 refreshButton!.addEventListener("click", () => {
-  postCache.delete(`post-${currentId}`);
-  commentCache.delete(`comments-${currentId}`);
-  loadPost(currentId);
+  postCache.clear();
+  commentCache.clear();
+  loadPost(1);
 });
 commentsButton!.addEventListener("click", () => {
   loadComment();
+});
+
+let timer: number;
+
+nextButton!.addEventListener("click", () => {
+  clearTimeout(timer); //wait again 0.3 second
+
+  timer = setTimeout(() => {
+    loadPost(currentId + 1);
+  }, 300);
+});
+
+previousButton!.addEventListener("click", () => {
+  if (currentId > 0) {
+    clearTimeout(timer); //wait again 0.3 second
+
+    timer = setTimeout(() => {
+      loadPost(currentId - 1);
+    }, 300);
+  }
 });
 loadPost(1);

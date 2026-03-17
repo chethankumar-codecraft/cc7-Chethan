@@ -98,3 +98,14 @@ hr {
   border: 1px solid green;
   background-color: green;
 }
+
+.comment-email {
+  display: inline;
+  background-color: rgb(219, 114, 184);
+  color: black;
+  border: 1px solid rgb(148, 235, 233);
+  border-radius: 20px;
+}
+.comment-message {
+  margin-left: 20px;
+}
