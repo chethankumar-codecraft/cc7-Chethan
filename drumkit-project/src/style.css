@@ -1,0 +1,174 @@
+html {
+  font-size: 10px;
+  background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+  background-size: cover;
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-image: url("image.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.keys {
+  display: flex;
+  flex: 1;
+  min-height: 80vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.key {
+  border: 4px solid black;
+  border-radius: 5px;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem 0.5rem;
+  transition: all 0.07s;
+  width: 100px;
+  text-align: center;
+  color: white;
+  background: rgba(190, 5, 5, 0.4);
+  text-shadow: 0 0 5px black;
+}
+
+.playing {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 10px #ffc600;
+}
+
+kbd {
+  display: block;
+  font-size: 40px;
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #7df370;
+}
+.recording-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 0;
+}
+
+.recording-buttons {
+  display: flex;
+  justify-content: right;
+  width: 50%;
+  margin: 30px auto 0 50%;
+  padding: 10px 0;
+}
+
+.recording-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  margin-right: 70px;
+  color: white;
+  font-family: Arial;
+}
+#record {
+  background-color: rgb(220, 54, 54);
+}
+#record:hover,
+.pause:hover,
+.continue:hover {
+  background-color: rgb(117, 220, 158);
+}
+.pause {
+  background-color: rgb(232, 232, 18);
+}
+.continue {
+  background-color: rgb(47, 205, 47);
+}
+#record-msg {
+  width: fit-content;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#progress-bar {
+  width: 0%;
+  height: 100%;
+  background: #ffc600;
+  transition: width 0.1s linear;
+}
+
+#record-status {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  color: #7df370;
+}
+
+.record-history {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: white;
+  width: 15%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+}
+#record-msg {
+  margin: 5px auto;
+  padding: 10px 16px;
+  width: fit-content;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+#showRecording,
+#clearRecording {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+#showRecording:hover {
+  background: #0056b3;
+}
