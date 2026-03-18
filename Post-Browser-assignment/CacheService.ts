@@ -16,4 +16,7 @@ export class CacheService<T> {
   delete(key: string) {
     return this.cache.delete(key);
   }
+  clear() {
+    return this.cache.clear();
+  }
 }
