@@ -1,0 +1,395 @@
+html {
+  font-size: 10px;
+  background-size: cover;
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("image.jpg") center/cover no-repeat;
+  filter: blur(2px);
+  transform: scale(1.1);
+  z-index: -1;
+}
+.keys {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  min-height: 90vh;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.key {
+  border: 4px solid black;
+  border-radius: 5px;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem 0.5rem;
+  transition: all 0.07s;
+  width: 100px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(145deg, #6c28d9e3, #4d1d95ec);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.15s ease;
+
+  text-shadow: 0 0 5px black;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.playing {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #a855f7;
+  border-color: #a855f7;
+}
+.key:hover {
+  transform: translateY(-4px);
+}
+
+kbd {
+  display: block;
+  font-size: 40px;
+}
+
+.sound {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #7df370;
+}
+
+.recording-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(20, 20, 20, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+  width: 15%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+button {
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+.recording-buttons button {
+  padding: 10px 20px;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+}
+#record {
+  background-color: rgb(0, 0, 0);
+}
+
+#record:hover:not(:disabled),
+#pause:hover:not(:disabled),
+.continue:hover:not(:disabled),
+#pausePlayback:hover:not(:disabled),
+#clearRecording:hover:not(:disabled),
+#playRecording:hover:not(:disabled),
+#edit-keys:hover:not(:disabled),
+#resetKeys:hover:not(:disabled),
+#addKey:hover:not(:disabled) {
+  background-color: #bf71ca66;
+}
+#pause {
+  background-color: rgb(0, 0, 0);
+  color: red;
+}
+#record-msg {
+  width: fit-content;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#progress-bar {
+  width: 0%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  transition: width 0.2s linear;
+}
+
+#record-status {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  background-color: rgb(36 32 32);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  color: #e72908;
+}
+
+.record-history {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(20, 20, 20, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 16px;
+  border-radius: 15px;
+  color: white;
+  width: 15%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.record-history button {
+  padding: 10px 20px;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+}
+#record-msg {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 15px auto;
+  padding: 10px 16px;
+  width: fit-content;
+  min-width: 250px;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+#playRecording,
+#clearRecording {
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+#playRecording {
+  background-color: rgb(0, 0, 0);
+}
+#clearRecording {
+  background-color: rgb(0, 0, 0);
+  font-size: 1.25rem;
+}
+
+#pausePlayback {
+  background-color: rgb(0, 0, 0);
+  color: red;
+  min-width: 110px;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+}
+
+button:disabled {
+  background-color: #201313;
+  color: #847c7c;
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+#confirmDialog {
+  width: 400px;
+  max-width: 90%;
+  padding: 20px 30px;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+  border: 2px solid #333;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  background: rgba(54, 53, 53, 0.94);
+  text-align: center;
+}
+
+#confirmDialog button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+#confirmYes {
+  background-color: rgba(42, 179, 42, 0.714);
+}
+#confirmNo {
+  background-color: rgba(201, 72, 72, 0.714);
+}
+
+#confirmDialog button:hover {
+  background-color: #bf71ca66;
+}
+
+#editDialog {
+  border: none;
+  border-radius: 20px;
+  padding: 30px;
+  width: 300px;
+  background: rgba(54, 53, 53, 0.94);
+  color: rgb(206, 82, 82);
+  max-width: 100%;
+  overflow-x: hidden;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+#editDialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+#editDialog input,
+#editDialog select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+#editDialog input {
+  width: 95%;
+}
+#editDialog button {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#cancelEdit {
+  color: rgba(0, 213, 255, 0.9);
+}
+#editDialog button:hover {
+  background-color: #bf71ca66;
+}
+
+.key .edit-hint {
+  opacity: 0;
+  transition: opacity 0.2s;
+  position: absolute;
+}
+
+.edit-mode .key .edit-hint {
+  opacity: 1;
+}
+
+.key.inactive .edit-hint {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.custom-key {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: fixed;
+  bottom: 30px;
+  right: 25px;
+  padding: 5px;
+  border-radius: 15px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+#edit-keys,
+#resetKeys,
+#addKey {
+  padding: 10px 18px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 8px;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+}
+
+.error-text {
+  color: rgb(230, 62, 62);
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  margin-left: 4px;
+  min-height: 1em;
+  visibility: hidden;
+}
+.input-error {
+  border-color: #ff4d4d;
+  box-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
+}
+
+#deleteKey {
+  color: #eb0808e2;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#cancelEdit,
+#saveEdit,
+#deleteKey {
+  background-color: black;
+}
+#saveEdit {
+  color: #22e50ddd;
+}
+.is-adding #deleteKey {
+  display: none;
+}
+
+.dialog-footer {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(1px);
+}

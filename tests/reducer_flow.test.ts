@@ -1,6 +1,6 @@
 import { it, expect, describe } from "vitest";
-import type { DrumState } from "../drumkit-project/reducer.ts";
-import { drumkitReducer } from "../drumkit-project/reducer.ts";
+import type { DrumState } from "../drumkit-project/models/reducer.ts";
+import { drumkitReducer } from "../drumkit-project/models/reducer.ts";
 
 describe("Testing Reducer for Recording", () => {
   let state: DrumState = {
@@ -13,9 +13,7 @@ describe("Testing Reducer for Recording", () => {
   const time = Date.now();
   //Record
   it("Testing start recording", () => {
-    expect(
-      drumkitReducer(state, { type: "START_RECORDING", timeStamp: time }),
-    ).toEqual({
+    expect(drumkitReducer(state, { type: "START_RECORDING" })).toEqual({
       mode: "recording-progress",
       recording: {
         name: "Recent",

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS Drum Kit</title>
+    <link rel="stylesheet" href="view/style.css" />
+  </head>
+
+  <body>
+    <div class="record-history">
+      <button id="playRecording">PLAY RECORDING</button>
+
+      <button id="clearRecording">CLEAR RECORDING</button>
+
+      <div id="record-status" hidden></div>
+
+      <div class="progress-container" hidden>
+        <div id="progress-bar"></div>
+      </div>
+      <button id="pausePlayback">PAUSE</button>
+    </div>
+    <div class="recording-buttons">
+      <button id="record">START RECORD</button>
+      <button id="pause">PAUSE</button>
+    </div>
+    <div id="record-msg">NORMAL STATE</div>
+
+    <div class="keys"></div>
+
+    <div class="custom-key">
+      <button id="edit-keys">EDIT KEYS</button>
+      <button id="resetKeys">RESET</button>
+      <button id="addKey">ADD KEYS</button>
+    </div>
+
+    <dialog id="confirmDialog">
+      <p id="confirmMessage"></p>
+      <button id="confirmYes">Yes</button>
+      <button id="confirmNo">Cancel</button>
+    </dialog>
+
+    <dialog id="editDialog">
+      <input id="editKey" placeholder="Key" maxlength="1" />
+      <div id="key-warning-msg" class="error-text"></div>
+      <select id="editSound">
+        <option value="/sounds/clap.wav">Clap</option>
+        <option value="/sounds/hihat.wav">Hi-Hat</option>
+        <option value="/sounds/kick.wav">Kick</option>
+        <option value="/sounds/openhat.wav">Open Hat</option>
+        <option value="/sounds/boom.wav">Boom</option>
+        <option value="/sounds/ride.wav">Ride</option>
+        <option value="/sounds/snare.wav">Snare</option>
+        <option value="/sounds/tom.wav">Tom</option>
+        <option value="/sounds/tink.wav">Tink</option>
+      </select>
+      <div class="dialog-footer">
+        <button id="deleteKey">Delete</button>
+        <button id="cancelEdit" type="button">Cancel</button>
+        <button id="saveEdit">Save</button>
+      </div>
+    </dialog>
+    <script type="module" src="controller/main.ts"></script>
+  </body>
+</html>
