@@ -1,4 +1,4 @@
-export type Beat = { timestamp: number; key: string };
+export type Beat = { timeStamp: number; key: string };
 export type Recording = Beat[];
 export type Listener = (beatIndex: number, totalBeats: number) => void;
 
@@ -40,11 +40,11 @@ export class Player {
     const normalisedBeats = this.normaliseBeats();
     if (normalisedBeats.length === 0) return;
 
-    const baseTime = normalisedBeats[this.beatIndex]?.timestamp ?? 0;
+    const baseTime = normalisedBeats[this.beatIndex]?.timeStamp ?? 0;
     for (let i = this.beatIndex; i < normalisedBeats.length; i++) {
       const beat = normalisedBeats[i];
       if (!beat) continue;
-      const delay = beat.timestamp - baseTime;
+      const delay = beat.timeStamp - baseTime;
 
       const timeReference = setTimeout(() => {
         this.playback(beat);
@@ -67,30 +67,44 @@ export class Player {
       let normaliseTime: number;
       if (!currentBeat) continue;
       if (i == 0 && currentBeat.key !== "PAUSED") {
-        normalise.push({ key: currentBeat.key, timestamp: 0 });
+        normalise.push({ key: currentBeat.key, timeStamp: 0 });
         continue;
       }
       if (!previousBeat) continue; //to avoid typescript error
 
       if (currentBeat.key === "PAUSED") {
-        delay += currentBeat.timestamp - previousBeat.timestamp;
+        delay += currentBeat.timeStamp - previousBeat.timeStamp;
         continue;
       }
       if (previousBeat.key === "PAUSED") {
         normaliseTime =
-          delay + (normalise[normalise.length - 1]?.timestamp ?? 0);
+          delay + (normalise[normalise.length - 1]?.timeStamp ?? 0);
       } else
         normaliseTime =
-          currentBeat.timestamp -
-          previousBeat.timestamp +
-          (normalise[normalise.length - 1]?.timestamp ?? 0);
+          currentBeat.timeStamp -
+          previousBeat.timeStamp +
+          (normalise[normalise.length - 1]?.timeStamp ?? 0);
       normalise.push({
         key: currentBeat.key,
-        timestamp: normaliseTime,
+        timeStamp: normaliseTime,
       });
       delay = 0;
     }
     return normalise;
+  }
+
+  //it is made for progress bar to get the duration after normalization
+  getTotalPlaybackDuration() {
+    const normalised = this.normaliseBeats();
+    if (normalised.length === 0) return 0;
+    return normalised[normalised.length - 1]!.timeStamp;
+  }
+
+  getCurrentBeatTimeStamp(): number {
+    const normalised = this.normaliseBeats();
+    if (normalised.length === 0) return 0;
+
+    return normalised[this.beatIndex]?.timeStamp ?? 0;
   }
 
   pause() {

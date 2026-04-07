@@ -1,0 +1,11 @@
+[
+  { "key": "A", "sound": "/sounds/clap.wav", "label": "Clap" },
+  { "key": "S", "sound": "/sounds/hihat.wav", "label": "Hi-Hat" },
+  { "key": "D", "sound": "/sounds/kick.wav", "label": "Kick" },
+  { "key": "F", "sound": "/sounds/openhat.wav", "label": "Open Hat" },
+  { "key": "G", "sound": "/sounds/boom.wav", "label": "Boom" },
+  { "key": "H", "sound": "/sounds/ride.wav", "label": "Ride" },
+  { "key": "J", "sound": "/sounds/snare.wav", "label": "Snare" },
+  { "key": "K", "sound": "/sounds/tom.wav", "label": "Tom" },
+  { "key": "L", "sound": "/sounds/tink.wav", "label": "Tink" }
+]

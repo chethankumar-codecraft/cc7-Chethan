@@ -27,15 +27,24 @@ jobs:
       - name: Run linting
         run: npm run lint
 
-      # Testing project
-      - name: Install dependencies in project folder
+      # Post-Browser project tests
+      - name: Post-Browser Install dependencies & Playwright
         working-directory: Post-Browser-assignment
-        run: npm install
+        run: |
+          npm ci
+          npx playwright install --with-deps
 
-      - name: Install Playwright Browsers
+      - name: Post-Browser Run Playwright tests
         working-directory: Post-Browser-assignment
-        run: npx playwright install --with-deps
+        run: npx playwright test --timeout=60000
 
-      - name: Run project tests
-        working-directory: Post-Browser-assignment
-        run: npx playwright test
+      # Drumkit project tests
+      - name: Drumkit Install dependencies & Playwright
+        working-directory: drumkit-project
+        run: |
+          npm ci
+          npx playwright install --with-deps
+
+      - name: Drumkit Run Playwright tests
+        working-directory: drumkit-project
+        run: npx playwright test --timeout=60000

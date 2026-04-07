@@ -1,49 +1,48 @@
 import { it, describe, expect, vi } from "vitest";
-import { Player } from "../drumkit-project/Player.ts";
+import { Player } from "../drumkit-project/models/Player.ts";
 
 describe("Testing Player", () => {
   it("The given recording should normalise", () => {
     const recording = [
-      { key: "A", timestamp: 10 },
-      { key: "B", timestamp: 20 },
-      { key: "PAUSED", timestamp: 30 },
-      { key: "Z", timestamp: 50 },
+      { key: "A", timeStamp: 10 },
+      { key: "B", timeStamp: 20 },
+      { key: "PAUSED", timeStamp: 30 },
+      { key: "Z", timeStamp: 50 },
     ];
     const player = new Player(recording, () => {});
-    console.log(player.normaliseBeats());
     expect(player.normaliseBeats()).toEqual([
-      { key: "A", timestamp: 0 },
-      { key: "B", timestamp: 10 },
-      { key: "Z", timestamp: 20 },
+      { key: "A", timeStamp: 0 },
+      { key: "B", timeStamp: 10 },
+      { key: "Z", timeStamp: 20 },
     ]);
   });
 
   it("The given recording wiht multiple pause should normalise ", () => {
     const recording = [
-      { key: "A", timestamp: 10 },
-      { key: "PAUSED", timestamp: 20 },
-      { key: "B", timestamp: 50 },
-      { key: "PAUSED", timestamp: 70 },
-      { key: "C", timestamp: 100 },
+      { key: "A", timeStamp: 10 },
+      { key: "PAUSED", timeStamp: 20 },
+      { key: "B", timeStamp: 50 },
+      { key: "PAUSED", timeStamp: 70 },
+      { key: "C", timeStamp: 100 },
     ];
     const player = new Player(recording, () => {});
     console.log(player.normaliseBeats());
     expect(player.normaliseBeats()).toEqual([
-      { key: "A", timestamp: 0 },
-      { key: "B", timestamp: 10 },
-      { key: "C", timestamp: 30 },
+      { key: "A", timeStamp: 0 },
+      { key: "B", timeStamp: 10 },
+      { key: "C", timeStamp: 30 },
     ]);
   });
 
   it("Testing Multiple pause, continue and play", async () => {
     vi.useFakeTimers();
     const recording = [
-      { key: "A", timestamp: 10 },
-      { key: "B", timestamp: 20 },
-      { key: "C", timestamp: 30 },
-      { key: "PAUSED", timestamp: 40 },
-      { key: "E", timestamp: 60 },
-      { key: "F", timestamp: 70 },
+      { key: "A", timeStamp: 10 },
+      { key: "B", timeStamp: 20 },
+      { key: "C", timeStamp: 30 },
+      { key: "PAUSED", timeStamp: 40 },
+      { key: "E", timeStamp: 60 },
+      { key: "F", timeStamp: 70 },
     ];
     let count = 0;
     const mockPlayback = () => {
@@ -88,10 +87,10 @@ describe("Testing Player", () => {
     vi.useFakeTimers();
 
     const recording = [
-      { key: "A", timestamp: 10 },
-      { key: "B", timestamp: 20 },
-      { key: "C", timestamp: 30 },
-      { key: "D", timestamp: 40 },
+      { key: "A", timeStamp: 10 },
+      { key: "B", timeStamp: 20 },
+      { key: "C", timeStamp: 30 },
+      { key: "D", timeStamp: 40 },
     ];
 
     let notifyCount = 0;

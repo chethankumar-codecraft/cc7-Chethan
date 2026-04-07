@@ -4,7 +4,8 @@ export type DrumState = {
     | "recording-progress"
     | "recording-pause"
     | "playback-progress"
-    | "playback-pause";
+    | "playback-pause"
+    | "edit";
   recording: Recordings;
 };
 
@@ -18,7 +19,7 @@ export type Beat = {
 };
 
 export type Action =
-  | { type: "START_RECORDING"; timeStamp: number }
+  | { type: "START_RECORDING" }
   | { type: "STOP_RECORDING" }
   | { type: "PAUSE_RECORDING"; data: Beat } //key is "PAUSED" and timeStamp is time while click pause
   | { type: "CONTINUE_RECORDING" }
@@ -26,7 +27,10 @@ export type Action =
   | { type: "START_PLAYBACK" }
   | { type: "PAUSE_PLAYBACK" }
   | { type: "STOP_PLAYBACK" }
-  | { type: "CONTINUE_PLAYBACK" };
+  | { type: "CONTINUE_PLAYBACK" }
+  | { type: "CLEAR_RECORDING" }
+  | { type: "OPEN_EDIT" }
+  | { type: "CLOSE_EDIT" };
 
 export const drumkitReducer = (state: DrumState, action: Action): DrumState => {
   switch (action.type) {
@@ -110,6 +114,31 @@ export const drumkitReducer = (state: DrumState, action: Action): DrumState => {
         },
       };
     }
+    case "CLEAR_RECORDING": {
+      return {
+        ...state,
+        recording: {
+          ...state.recording,
+          beats: [],
+        },
+        mode: "normal",
+      };
+    }
+    case "OPEN_EDIT": {
+      if (state.mode !== "normal") return state;
+      return {
+        ...state,
+        mode: "edit",
+      };
+    }
+    case "CLOSE_EDIT": {
+      if (state.mode !== "edit") return state;
+      return {
+        ...state,
+        mode: "normal",
+      };
+    }
+
     default:
       return state;
   }
